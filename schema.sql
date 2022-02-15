@@ -32,6 +32,27 @@ CREATE TABLE mcu_movies(
 	box_Office BIGINT	
 );
 
+-- Alter table to create numeric phase column
+ALTER TABLE mcu_movies
+ADD COLUMN phase_num INT;
+
+-- Update values in phase_num column based on values in text field
+UPDATE mcu_movies
+SET phase_num = 1
+WHERE mcu_phase = 'Phase One';
+
+UPDATE mcu_movies
+SET phase_num = 2
+WHERE mcu_phase = 'Phase Two';
+
+UPDATE mcu_movies
+SET phase_num = 3
+WHERE mcu_phase = 'Phase Three';
+
+UPDATE mcu_movies
+SET phase_num = 4
+WHERE mcu_phase = 'Phase Four';
+
 -- Review data in mcu_cast table
 SELECT *
 FROM mcu_cast;
@@ -43,12 +64,3 @@ FROM mcu_characters;
 -- Review data in mcu_movies table
 SELECT *
 FROM mcu_movies;
-
--- -- ANALYSIS
--- 1. Profit by Year
-SELECT title, date_part('Year', release_date) as "Year", box_office, budget, (box_office - budget) as "Profit"
-FROM mcu_movies
-WHERE box_office IS NOT NULL;
-
--- 2. Profit by Phase
-SELECT title, date_part('Year',)
